@@ -20,5 +20,11 @@ class Puzzle extends Model
     {
         return $this->belongsTo(\App\Models\Categorie::class);
     }
+
+    public function paniers()
+    {
+        return $this->belongsToMany(Panier::class, 'puzzle_panier')
+                    ->withPivot('quantite');
+    }
 }
 

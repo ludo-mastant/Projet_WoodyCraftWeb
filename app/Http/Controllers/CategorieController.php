@@ -78,4 +78,11 @@ class CategorieController extends Controller
     {
         //
     }
+
+    public function home()
+    {  
+        $categories = Categorie::all(); // récupère toutes les catégories
+        return view('welcome', compact('categories')); // passe $categories à la vue accueil
+    }
+
 }

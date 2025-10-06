@@ -22,5 +22,16 @@
             <h3 class="font-semibold text-xl text-gray-800 pt-2">@lang('Dernière mise à jour')</h3>
             <p>{{ $puzzle->updated_at->format('d/m/Y') }}</p>
         @endif
+
+        <form action="{{ route('panier.add', $puzzle->id) }}" method="POST" class="mt-4">
+            @csrf
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+                Ajouter au panier
+            </button>
+        </form>
+
+        @if(session('success'))
+            <p class="text-green-500 mt-2">{{ session('success') }}</p>
+        @endif
     </x-puzzles-card>
 </x-app-layout>
