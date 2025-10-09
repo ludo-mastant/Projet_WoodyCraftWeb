@@ -14,7 +14,7 @@
                             <tr>
                                 <th class="px-2 py-2 text-xs text-gray-500">#</th>
                                 <th class="px-2 py-2 text-xs text-gray-500">Nom</th>
-                                <th class="px-2 py-2 text-xs text-gray-500"></th>
+                                <th class="px-2 py-2 text-xs text-gray-500">Description</th>
                                 <th class="px-2 py-2 text-xs text-gray-500"></th>
                                 <th class="px-2 py-2 text-xs text-gray-500"></th>
                             </tr>
@@ -24,20 +24,10 @@
                                 <tr class="whitespace-nowrap">
                                     <td class="px-4 py-4 text-sm text-gray-500">{{ $puzzle->id }}</td>
                                     <td class="px-4 py-4">{{ $puzzle->nom }}</td>
-                                    <x-link-button href="{{ route('puzzles.edit', $puzzle->id) }}">
-                                        @lang('Edit')
-                                    </x-link-button>
-                                    <x-link-button href="{{ route('puzzles.destroy', $puzzle->id) }}">
+                                    <td class="px-4 py-4">{{ $puzzle->description }}</td>
+                                    <x-link-button href="{{ route('puzzles.show', $puzzle->id) }}">
                                         @lang('Show')
                                     </x-link-button>
-                                    <x-link-button onclick="event.preventDefault(); 
-                                    document.getElementById('destroy{{ $puzzle->id }}').submit();">
-                                        @lang('Delete')
-                                    </x-link-button>
-                                    <form id="destroy{{ $puzzle->id }}" action="{{ route('puzzles.show', $puzzle->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>

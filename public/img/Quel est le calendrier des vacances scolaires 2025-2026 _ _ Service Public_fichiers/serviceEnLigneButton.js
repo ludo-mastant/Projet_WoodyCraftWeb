@@ -1,0 +1,1 @@
+define(["jquery"],function(e){"use strict";function r(r){e.each(r.urlDemarches,function(r,a){var t=a.code,n=a.url,c=e("[data-pivot-local-service-en-ligne="+t+"]");c.attr("href",n),c.removeClass("disabled"),c.removeAttr("tabindex"),e("[data-aNoter-raccordement-demarche="+t+"]").addClass("fr-sr-only")})}return{enable:r}});

@@ -13,4 +13,20 @@ class Categorie extends Model
     {
         return $this->hasMany(\App\Models\Puzzle::class);
     }
+
+    protected $fillable = [
+        'nom',
+        'image',
+    ];
+
+    public function getImageUrlAttribute(): string
+    {
+        if (!$this->image) {
+            return asset('images/default-category.jpg');
+        }
+
+        return Str::startsWith($this->image, ['http://','https://'])
+            ? $this->image
+            : asset('storage/categories/'.$this->image);
+    }
 }

@@ -31,25 +31,9 @@
 
                 <x-input-error :messages="$errors->get('nom')" class="mt-2" />
             </div>
-
-            <!-- Description de la catégorie -->
-            <div>
-                <x-input-label for="description" :value="__('Description de la catégorie')" />
-
-                <x-text-input
-                    id="description"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="description"
-                    :value="old('description')"
-                    required
-                    autofocus
-                />
-
-                <x-input-error :messages="$errors->get('description')" class="mt-2" />
-            </div>
-
-
+            @if($category->image)
+                <img src="{{ asset('storage/'.$category->image) }}" alt="{{ $category->nom }}" style="max-width:200px;">
+            @endif
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-3">
                     {{ __('Créer') }}

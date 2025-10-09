@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->FLOAT('total', 8, 2)->default(0);
-            $table->integer('status')->default('0');
-            $table->STRING('mode_paiement')->nullable(); // ex: carte / paypal etc
+            $table->unsignedBigInteger('utilisateur_id');
+            $table->decimal('total', 10, 2)->default(0);
+            $table->string('status', 30)->default('draft');
+            $table->string('mode_paiement', 50)->nullable();
             $table->timestamps();
+            $table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->cascadeOnDelete();
         });
     }
 

@@ -1,0 +1,1 @@
+define(["jquery"],function(e){"use strict";return{getGeoData:function(a,t,n,o){e.ajax({url:"/geo/rechercheJson",method:"GET",dataType:"json",data:a}).done(t).fail(n).always(o)}}});

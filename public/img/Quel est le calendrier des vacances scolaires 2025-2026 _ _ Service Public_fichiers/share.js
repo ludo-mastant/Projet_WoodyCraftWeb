@@ -1,0 +1,1 @@
+define(["jquery","url"],function(e,r){"use strict";return{setUp:function(t){t||(t=window);var a=new r(t.location.href);if(a.hasParameter("successfulShare")){var s=e("#share_succeeded_alert");s.show().removeAttr("aria-hidden").removeAttr("hidden"),s.focus(),history.replaceState(null,null,a.deleteParam("successfulShare"))}}}});

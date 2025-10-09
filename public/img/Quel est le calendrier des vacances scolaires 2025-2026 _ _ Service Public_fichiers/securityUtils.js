@@ -1,0 +1,1 @@
+define([],function(){"use strict";return{replaceXSS:function(e){if(e){var t={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","/":"&#x2F;"};Object.keys(t).forEach(function(n){e=e.replace(new RegExp(n,"g"),t[n])})}return e}}});

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\Rule;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -30,16 +31,22 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
+        $validated = $request->validate([
+        'nom'     => ['required','string','max:40'],   // ⬅️ plus "name"
+        'prenom'  => ['nullable','string','max:40'],
+        'adresse' => ['nullable','string','max:255'],
+        'email'   => ['required','string','email','max:255'],
+        'password'=> ['required','confirmed'],
+        'tel'     => ['nullable','string','max:30'],
+    ]);
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'nom'     => $validated['nom'],
+            'prenom'  => $validated['prenom'] ?? null,
+            'adresse' => $validated['adresse'] ?? null,
+            'email'   => $validated['email'],
+            'password'=> Hash::make($validated['password']),
+            'tel'     => $validated['tel'] ?? null,
+            'role'    => 1,
         ]);
 
         event(new Registered($user));

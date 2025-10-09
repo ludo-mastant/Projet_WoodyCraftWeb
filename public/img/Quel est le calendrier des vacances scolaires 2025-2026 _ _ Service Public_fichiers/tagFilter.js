@@ -1,0 +1,1 @@
+define(["jquery"],function(t){"use strict";return{initTagFilter:function(){t("[data-control-filter]").on("click",function(i){i.stopPropagation();t(this).attr("data-control-filter");t(this).hasClass("active")?t(this).hasClass("active")&&t(this).removeClass("active"):t(this).addClass("active")})}}});

@@ -5,7 +5,7 @@
             <!-- Section d’accroche -->
             <section class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl px-10 py-16 text-center border border-white/30">
                 <img
-                    src="{{ asset('images/woodycraft.png') }}"
+                    src="{{ asset('img/logo_bleu.png') }}"
                     alt="WoodyCraft"
                     class="mx-auto mb-8 w-36 drop-shadow-xl"
                 >
@@ -15,7 +15,7 @@
                 </h1>
 
                 <p class="text-lg md:text-xl text-[#1f3b57] leading-relaxed max-w-3xl mx-auto mb-10">
-                    Les puzzles 3D en bois les plus funs, prêts à défier ton imagination ! 🧠🪵🎉
+                    Les puzzles 3D en bois les plus funs, prêts à défier ton imagination ! 
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
