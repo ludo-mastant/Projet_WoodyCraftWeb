@@ -85,17 +85,19 @@
                             &#8594;
                         </button>
 
-                        <div id="carousel" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 px-2 md:px-12">
-                            @foreach($categories as $categorie)
-                                <article class="flex-shrink-0 w-64 snap-center bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6">
-                                    <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
-                                        {{ $categorie->nom }}
-                                    </h3>
-                                    <p class="text-sm md:text-base text-[#1f3b57]/90 leading-snug">
-                                        {{ $categorie->description }}
-                                    </p>
-                                </article>
-                            @endforeach
+                        <div class="overflow-hidden">
+                            <div id="carousel" class="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 px-2 md:px-12">
+                                @foreach($categories as $categorie)
+                                    <article class="flex-shrink-0 w-64 snap-center bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6">
+                                        <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
+                                            {{ $categorie->nom }}
+                                        </h3>
+                                        <p class="text-sm md:text-base text-[#1f3b57]/90 leading-snug">
+                                            {{ $categorie->description }}
+                                        </p>
+                                    </article>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </section>
