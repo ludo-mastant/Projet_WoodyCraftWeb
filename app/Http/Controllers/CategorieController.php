@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CategorieController extends Controller
 {
+
+        public function home()
+    {
+        $categories = Categorie::query()
+            ->orderBy('nom')
+            ->take(8)
+            ->get();
+
+        return view('welcome', compact('categories'));
+    }
     /**
      * Liste des catégories avec recherche + tri
      */

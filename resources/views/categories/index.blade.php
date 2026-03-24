@@ -7,7 +7,7 @@
         <h1 class="text-4xl md:text-5xl font-extrabold text-[#1e3b57] tracking-tight">
           Nos <span class="text-[#3aa3e3]">Catégories</span>
         </h1>
-        <p class="mt-2 text-[#1f3b57]/80">Parcours les univers et trouve ton prochain puzzle 🧩</p>
+        <p class="mt-2 text-[#1f3b57]/80">Parcours les univers et trouve ton prochain puzzle</p>
       </header>
 
       {{-- Barre d’outils (recherche + tri) --}}

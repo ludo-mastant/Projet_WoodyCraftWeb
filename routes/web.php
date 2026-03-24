@@ -18,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Remplace la route actuelle
 Route::get('/', [CategorieController::class, 'home'])->name('home');
 
