@@ -19,21 +19,37 @@
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a
-                        href="{{ route('login') }}"
-                        class="inline-flex items-center px-8 py-3 bg-[#1e3b57] text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:bg-[#3aa3e3]"
-                    >
-                        Se connecter
-                    </a>
-
-                    @if (Route::has('register'))
+                    @auth
                         <a
-                            href="{{ route('register') }}"
+                            href="{{ route('paniers.index') }}"
+                            class="inline-flex items-center px-8 py-3 bg-[#1e3b57] text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:bg-[#3aa3e3]"
+                        >
+                            Voir mon panier
+                        </a>
+
+                        <a
+                            href="{{ route('profile.edit') }}"
                             class="inline-flex items-center px-8 py-3 border border-[#1e3b57] text-[#1e3b57] text-lg font-semibold rounded-full shadow hover:bg-[#1e3b57] hover:text-white transition-colors"
                         >
-                            S'inscrire
+                            Mon profil
                         </a>
-                    @endif
+                    @else
+                        <a
+                            href="{{ route('login') }}"
+                            class="inline-flex items-center px-8 py-3 bg-[#1e3b57] text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:bg-[#3aa3e3]"
+                        >
+                            Se connecter
+                        </a>
+
+                        @if (Route::has('register'))
+                            <a
+                                href="{{ route('register') }}"
+                                class="inline-flex items-center px-8 py-3 border border-[#1e3b57] text-[#1e3b57] text-lg font-semibold rounded-full shadow hover:bg-[#1e3b57] hover:text-white transition-colors"
+                            >
+                                S'inscrire
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </section>
 
