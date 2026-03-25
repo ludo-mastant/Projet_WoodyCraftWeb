@@ -87,21 +87,25 @@
                         <div class="overflow-hidden">
                             <div
                                 id="carousel"
-                                class="flex gap-6 overflow-x-auto overflow-y-hidden scroll-smooth px-2 md:px-12 pb-4"
+                                class="flex items-start gap-6 overflow-x-auto overflow-y-hidden scroll-smooth px-2 md:px-12 pb-4"
                             >
                                 @foreach($categories as $categorie)
                                     <a
-                                        href="{{ route('categories.show', $categorie->id) }}"
-                                        class="shrink-0 w-[85%] sm:w-[70%] md:w-[48%] lg:w-[31%]"
+                                        href="{{ route('categories.show', $categorie) }}"
+                                        class="shrink-0 w-64 md:w-72"
                                     >
-                                        <article class="h-full bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6 cursor-pointer">
-                                            @if(!empty($categorie->image))
-                                                <img
-                                                    src="{{ asset($categorie->image) }}"
-                                                    alt="{{ $categorie->nom }}"
-                                                    class="w-full h-40 object-cover rounded-2xl mb-4"
-                                                >
-                                            @endif
+                                        <article class="bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6 cursor-pointer min-h-[260px]">
+                                            <div class="w-full h-40 rounded-2xl overflow-hidden bg-[#f3ede6] mb-4 flex items-center justify-center">
+                                                @if(!empty($categorie->image))
+                                                    <img
+                                                        src="{{ asset($categorie->image) }}"
+                                                        alt="{{ $categorie->nom }}"
+                                                        class="w-full h-full object-cover"
+                                                    >
+                                                @else
+                                                    <span class="text-sm text-[#1f3b57]/60">Aucune image</span>
+                                                @endif
+                                            </div>
 
                                             <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
                                                 {{ $categorie->nom }}
@@ -143,7 +147,10 @@
 
             function getScrollAmount() {
                 const firstCard = carousel.querySelector('a');
-                if (!firstCard) return 300;
+
+                if (!firstCard) {
+                    return 300;
+                }
 
                 const cardWidth = firstCard.getBoundingClientRect().width;
                 const styles = window.getComputedStyle(carousel);
