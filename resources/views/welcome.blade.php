@@ -15,7 +15,7 @@
                 </h1>
 
                 <p class="text-lg md:text-xl text-[#1f3b57] leading-relaxed max-w-3xl mx-auto mb-10">
-                    Les puzzles 3D en bois les plus funs, prêts à défier ton imagination ! 
+                    Les puzzles 3D en bois les plus funs, prêts à défier ton imagination !
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
@@ -53,88 +53,74 @@
                 </div>
             </section>
 
+            <!-- Carousel Catégories -->
             @if($categories->count() > 0)
-    <section class="mt-20">
-        <header class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-2">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#1e3b57]">
-                Nos catégories phares
-            </h2>
-            <p class="text-sm md:text-base text-[#1f3b57]/80">
-                Fais défiler pour explorer nos univers en bois.
-            </p>
-        </header>
+                <section class="mt-20">
+                    <header class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[#1e3b57]">
+                            Nos catégories phares
+                        </h2>
+                        <p class="text-sm md:text-base text-[#1f3b57]/80">
+                            Fais défiler pour explorer nos univers en bois.
+                        </p>
+                    </header>
 
-        <div class="relative">
-            <button
-                id="prevBtn"
-                type="button"
-                aria-label="Précédent"
-                class="hidden md:flex absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
-            >
-                &#8592;
-            </button>
-
-            <button
-                id="nextBtn"
-                type="button"
-                aria-label="Suivant"
-                class="hidden md:flex absolute right-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
-            >
-                &#8594;
-            </button>
-
-            <div class="overflow-hidden">
-                <div id="carousel" class="w-full flex gap-6 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory pb-4 px-2 md:px-12">
-                    @foreach($categories as $categorie)
-                        <a
-                            href="{{ route('categories.show', $categorie) }}"
-                            class="block flex-shrink-0 w-64 snap-center"
+                    <div class="relative">
+                        <button
+                            id="prevBtn"
+                            type="button"
+                            aria-label="Précédent"
+                            class="hidden md:flex absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
                         >
-                            <article class="h-full bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6 cursor-pointer">
-                                <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
-                                    {{ $categorie->nom }}
-                                </h3>
+                            &#8592;
+                        </button>
 
-                                <p class="text-sm md:text-base text-[#1f3b57]/90 leading-snug">
-                                    {{ $categorie->description }}
-                                </p>
-                            </article>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
+                        <button
+                            id="nextBtn"
+                            type="button"
+                            aria-label="Suivant"
+                            class="hidden md:flex absolute right-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
+                        >
+                            &#8594;
+                        </button>
+
+                        <div class="overflow-hidden">
+                            <div
+                                id="carousel"
+                                class="flex gap-6 overflow-x-auto overflow-y-hidden scroll-smooth px-2 md:px-12 pb-4"
+                            >
+                                @foreach($categories as $categorie)
+                                    <a
+                                        href="{{ route('categories.show', $categorie->id) }}"
+                                        class="shrink-0 w-[85%] sm:w-[70%] md:w-[48%] lg:w-[31%]"
+                                    >
+                                        <article class="h-full bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6 cursor-pointer">
+                                            @if(!empty($categorie->image))
+                                                <img
+                                                    src="{{ asset($categorie->image) }}"
+                                                    alt="{{ $categorie->nom }}"
+                                                    class="w-full h-40 object-cover rounded-2xl mb-4"
+                                                >
+                                            @endif
+
+                                            <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
+                                                {{ $categorie->nom }}
+                                            </h3>
+
+                                            <p class="text-sm md:text-base text-[#1f3b57]/80">
+                                                Découvrir la catégorie
+                                            </p>
+                                        </article>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            @endif
+
         </div>
-    </section>
-@endif
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const carousel = document.getElementById('carousel');
-            const nextBtn = document.getElementById('nextBtn');
-            const prevBtn = document.getElementById('prevBtn');
-
-            if (!carousel || !nextBtn || !prevBtn) return;
-
-            const scrollAmount = () => {
-                const card = carousel.querySelector('article');
-                return card ? card.offsetWidth + 24 : 280;
-            };
-
-            nextBtn.addEventListener('click', () => {
-                carousel.scrollBy({
-                    left: scrollAmount(),
-                    behavior: 'smooth'
-                });
-            });
-
-            prevBtn.addEventListener('click', () => {
-                carousel.scrollBy({
-                    left: -scrollAmount(),
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    </div>
 
     <style>
         #carousel {
@@ -146,4 +132,60 @@
             display: none;
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.getElementById('carousel');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            if (!carousel || !nextBtn || !prevBtn) return;
+
+            function getScrollAmount() {
+                const firstCard = carousel.querySelector('a');
+                if (!firstCard) return 300;
+
+                const cardWidth = firstCard.getBoundingClientRect().width;
+                const styles = window.getComputedStyle(carousel);
+                const gap = parseInt(styles.gap || styles.columnGap || 24, 10);
+
+                return cardWidth + gap;
+            }
+
+            function updateButtons() {
+                const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+
+                if (carousel.scrollLeft <= 5) {
+                    prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
+                } else {
+                    prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+                }
+
+                if (carousel.scrollLeft >= maxScrollLeft - 5) {
+                    nextBtn.classList.add('opacity-40', 'cursor-not-allowed');
+                } else {
+                    nextBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+                }
+            }
+
+            nextBtn.addEventListener('click', function () {
+                carousel.scrollBy({
+                    left: getScrollAmount(),
+                    behavior: 'smooth'
+                });
+            });
+
+            prevBtn.addEventListener('click', function () {
+                carousel.scrollBy({
+                    left: -getScrollAmount(),
+                    behavior: 'smooth'
+                });
+            });
+
+            carousel.addEventListener('scroll', updateButtons);
+            window.addEventListener('resize', updateButtons);
+
+            updateButtons();
+        });
+    </script>
 </x-app-layout>
