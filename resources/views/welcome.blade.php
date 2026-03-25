@@ -53,57 +53,59 @@
                 </div>
             </section>
 
-            <!-- Carousel Catégories -->
             @if($categories->count() > 0)
-                <section class="mt-20">
-                    <header class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-2">
-                        <h2 class="text-3xl md:text-4xl font-bold text-[#1e3b57]">
-                            Nos catégories phares
-                        </h2>
-                        <p class="text-sm md:text-base text-[#1f3b57]/80">
-                            Fais défiler pour explorer nos univers en bois.
-                        </p>
-                    </header>
+    <section class="mt-20">
+        <header class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-2">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#1e3b57]">
+                Nos catégories phares
+            </h2>
+            <p class="text-sm md:text-base text-[#1f3b57]/80">
+                Fais défiler pour explorer nos univers en bois.
+            </p>
+        </header>
 
-                    <div class="relative">
-                        <!-- Flèches carousel -->
-                        <button
-                            id="prevBtn"
-                            type="button"
-                            aria-label="Précédent"
-                            class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
+        <div class="relative">
+            <button
+                id="prevBtn"
+                type="button"
+                aria-label="Précédent"
+                class="hidden md:flex absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
+            >
+                &#8592;
+            </button>
+
+            <button
+                id="nextBtn"
+                type="button"
+                aria-label="Suivant"
+                class="hidden md:flex absolute right-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
+            >
+                &#8594;
+            </button>
+
+            <div class="overflow-hidden">
+                <div id="carousel" class="w-full flex gap-6 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory pb-4 px-2 md:px-12">
+                    @foreach($categories as $categorie)
+                        <a
+                            href="{{ route('categories.show', $categorie) }}"
+                            class="block flex-shrink-0 w-64 snap-center"
                         >
-                            &#8592;
-                        </button>
+                            <article class="h-full bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6 cursor-pointer">
+                                <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
+                                    {{ $categorie->nom }}
+                                </h3>
 
-                        <button
-                            id="nextBtn"
-                            type="button"
-                            aria-label="Suivant"
-                            class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg shadow-[#1e3b57]/20 border border-white/50 text-[#1e3b57] hover:bg-[#d6eafc] transition"
-                        >
-                            &#8594;
-                        </button>
-
-                        <div class="overflow-hidden">
-                            <div id="carousel" class="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 px-2 md:px-12">
-                                @foreach($categories as $categorie)
-                                    <article class="flex-shrink-0 w-64 snap-center bg-white/90 border border-white/30 rounded-3xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2 hover:bg-gradient-to-t from-[#d6eafc]/20 to-white p-6">
-                                        <h3 class="text-xl md:text-2xl font-semibold text-[#1e3b57] mb-2">
-                                            {{ $categorie->nom }}
-                                        </h3>
-                                        <p class="text-sm md:text-base text-[#1f3b57]/90 leading-snug">
-                                            {{ $categorie->description }}
-                                        </p>
-                                    </article>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            @endif
+                                <p class="text-sm md:text-base text-[#1f3b57]/90 leading-snug">
+                                    {{ $categorie->description }}
+                                </p>
+                            </article>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+@endif
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -114,17 +116,34 @@
             if (!carousel || !nextBtn || !prevBtn) return;
 
             const scrollAmount = () => {
-                const visibleCard = carousel.querySelector('article');
-                return visibleCard ? visibleCard.offsetWidth + 24 : 260;
+                const card = carousel.querySelector('article');
+                return card ? card.offsetWidth + 24 : 280;
             };
 
             nextBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                carousel.scrollBy({
+                    left: scrollAmount(),
+                    behavior: 'smooth'
+                });
             });
 
             prevBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                carousel.scrollBy({
+                    left: -scrollAmount(),
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
+
+    <style>
+        #carousel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        #carousel::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </x-app-layout>
