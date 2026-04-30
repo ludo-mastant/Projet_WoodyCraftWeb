@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Puzzle;
+use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 
 class PuzzleController extends Controller
