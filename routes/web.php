@@ -5,6 +5,7 @@ use App\Http\Controllers\PanierController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PuzzleController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\FournisseurController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Remplace la route actuelle
+
 Route::get('/', [CategorieController::class, 'home'])->name('home');
 
 Route::get('/dashboard', function () {
@@ -49,6 +50,10 @@ Route::middleware('auth')->group(function () {
     // PayPal (exemple de flux)
     Route::get('/paypal/return', [CheckoutController::class, 'paypalReturn'])->name('paypal.return');
     Route::get('/paypal/cancel', [CheckoutController::class, 'paypalCancel'])->name('paypal.cancel');
+
+    #pour fournisseur
+    Route::resource('fournisseurs', FournisseurController::class);
+    Route::resource('fournisseurs', FournisseurController::class)->except(['show']);
 });
 
 

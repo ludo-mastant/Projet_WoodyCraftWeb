@@ -14,11 +14,17 @@ class Puzzle extends Model
         'prix',
         'image',
         'categorie_id',
+        'fournisseur_id'
     ];
 
     public function categorie()
     {
         return $this->belongsTo(\App\Models\Categorie::class);
+    }
+
+    public function fournisseur()
+    {
+        return $this->belongsTo(Fournisseur::class);
     }
 
     public function paniers()
