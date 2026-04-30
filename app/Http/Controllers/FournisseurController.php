@@ -57,6 +57,13 @@ class FournisseurController extends Controller
             ->with('success', 'Fournisseur modifié avec succès.');
     }
 
+    public function show(Fournisseur $fournisseur)
+    {
+        $fournisseur->load('puzzles');
+
+        return view('fournisseurs.show', compact('fournisseur'));
+    }
+
     public function destroy(Fournisseur $fournisseur)
     {
         if ($fournisseur->puzzles()->exists()) {

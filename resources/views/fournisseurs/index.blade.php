@@ -9,17 +9,18 @@
                 </h1>
 
                 <p class="mt-2 text-[#1f3b57]/80">
-                    Ajoute, modifie ou supprime les fournisseurs des puzzles
+                    Ajoute, consulte, modifie ou supprime les fournisseurs des puzzles
                 </p>
             </header>
 
-            {{-- Messages --}}
+            {{-- Messages de succès --}}
             @if(session('success'))
                 <div class="mb-6 bg-green-100 text-green-800 rounded-2xl px-5 py-4 border border-green-200">
                     {{ session('success') }}
                 </div>
             @endif
 
+            {{-- Messages d'erreur --}}
             @if(session('error'))
                 <div class="mb-6 bg-red-100 text-red-800 rounded-2xl px-5 py-4 border border-red-200">
                     {{ session('error') }}
@@ -33,6 +34,7 @@
                         <h2 class="text-xl font-bold text-[#1e3b57]">
                             Liste des fournisseurs
                         </h2>
+
                         <p class="text-sm text-[#1f3b57]/70">
                             Total : {{ $fournisseurs->count() }} fournisseur{{ $fournisseurs->count() > 1 ? 's' : '' }}
                         </p>
@@ -45,8 +47,9 @@
                 </div>
             </section>
 
-            {{-- Liste --}}
+            {{-- Liste des fournisseurs --}}
             <section class="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/30 px-4 md:px-6 py-6">
+
                 @if($fournisseurs->count() === 0)
                     <div class="text-center py-12">
                         <p class="text-[#1f3b57]/80 mb-4">
@@ -86,12 +89,21 @@
                                         </td>
 
                                         <td class="py-4 px-4">
-                                            <div class="flex justify-end gap-3">
+                                            <div class="flex flex-col sm:flex-row justify-end gap-3">
+
+                                                {{-- Voir --}}
+                                                <a href="{{ route('fournisseurs.show', $fournisseur) }}"
+                                                   class="inline-flex items-center justify-center px-4 py-2 rounded-2xl font-semibold bg-white/90 text-[#1e3b57] border border-white/50 hover:opacity-90 transition">
+                                                    Voir
+                                                </a>
+
+                                                {{-- Modifier --}}
                                                 <a href="{{ route('fournisseurs.edit', $fournisseur) }}"
-                                                   class="inline-flex items-center px-4 py-2 rounded-2xl font-semibold bg-[#3aa3e3] text-white hover:opacity-90 transition">
+                                                   class="inline-flex items-center justify-center px-4 py-2 rounded-2xl font-semibold bg-[#3aa3e3] text-white hover:opacity-90 transition">
                                                     Modifier
                                                 </a>
 
+                                                {{-- Supprimer --}}
                                                 <form action="{{ route('fournisseurs.destroy', $fournisseur) }}"
                                                       method="POST"
                                                       onsubmit="return confirm('Voulez-vous vraiment supprimer ce fournisseur ?')">
@@ -99,10 +111,11 @@
                                                     @method('DELETE')
 
                                                     <button type="submit"
-                                                            class="inline-flex items-center px-4 py-2 rounded-2xl font-semibold bg-red-600 text-white hover:opacity-90 transition">
+                                                            class="inline-flex items-center justify-center px-4 py-2 rounded-2xl font-semibold bg-red-600 text-white hover:opacity-90 transition">
                                                         Supprimer
                                                     </button>
                                                 </form>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -111,6 +124,7 @@
                         </table>
                     </div>
                 @endif
+
             </section>
 
         </div>
