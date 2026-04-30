@@ -9,10 +9,17 @@ class PuzzleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $puzzles = Puzzle::all();
-        return view('puzzles.index', compact('puzzles'));
+        $fournisseurs = Fournisseur::orderBy('nom')->get();
+    
+        $puzzles = Puzzle::with(['categorie', 'fournisseur'])
+            ->when($request->filled('fournisseur_id'), function ($query) use ($request) {
+                $query->where('fournisseur_id', $request->fournisseur_id);
+            })
+            ->get();
+    
+        return view('puzzles.index', compact('puzzles', 'fournisseurs'));
     }
 
     /**
@@ -51,6 +58,8 @@ class PuzzleController extends Controller
      */
     public function show(Puzzle $puzzle)
     {
+        $puzzle->load(['categorie', 'fournisseur']);
+    
         return view('puzzles.show', compact('puzzle'));
     }
 
