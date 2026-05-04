@@ -51,6 +51,22 @@
                 <x-input-error :messages="$errors->get('categorie')" class="mt-2" />
             </div>
 
+            <div>
+                <x-input-label for="fournisseur" :value="__('Fournisseur')" />
+
+                <x-text-input
+                    id="fournisseur"
+                    class="block mt-1 w-full"
+                    type="text"
+                    name="fournisseur"
+                    :value="old('fournisseur')"
+                    required
+                    autofocus
+                />
+
+                <x-input-error :messages="$errors->get('fournisseur')" class="mt-2" />
+            </div>
+
 
 
             <div>
