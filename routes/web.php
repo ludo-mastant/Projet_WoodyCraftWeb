@@ -53,7 +53,6 @@ Route::middleware('auth')->group(function () {
 
     #pour fournisseur
     Route::resource('fournisseurs', FournisseurController::class);
-    Route::resource('fournisseurs', FournisseurController::class)->except(['show']);
 });
 
 
