@@ -46,7 +46,7 @@ class PuzzleController extends Controller
 
         $puzzle = new Puzzle();
         $puzzle->nom = $request->nom;
-        $puzzle->categorie = $request->categorie;
+        $puzzle->categorie_id = $request->categorie;
         $puzzle->description = $request->description;
         $puzzle->image = $request->image;
         $puzzle->prix = $request->prix;
