@@ -39,6 +39,7 @@ class PuzzleController extends Controller
         $date = $request->validate([
             'nom' => 'required|max:100',
             'categorie' => 'required|max:100',
+            'fournisseur' => 'required|max:100',
             'description' => 'required|max:500',
             'image' => 'required|max:100',
             'prix' => 'required|numeric|between:0,99.99',
@@ -47,6 +48,7 @@ class PuzzleController extends Controller
         $puzzle = new Puzzle();
         $puzzle->nom = $request->nom;
         $puzzle->categorie_id = $request->categorie;
+        $puzzle->fournisseur_id = $request->fournisseur;
         $puzzle->description = $request->description;
         $puzzle->image = $request->image;
         $puzzle->prix = $request->prix;
